@@ -40,9 +40,7 @@ public class YQHBaseOperator implements HBaseOperator {
 	}
 
 	public void write(String key, InputStream in) {
-		try {
-			HTable table = new HTable(conf, hTableName);
-			
+		try {			
 			int count = 0;
 			while (count == 0) {
 				count = in.available();
@@ -52,17 +50,25 @@ public class YQHBaseOperator implements HBaseOperator {
 			while (readCount < count) {
 				readCount += in.read(b, readCount, count - readCount);
 			}
-
-			Put put = new Put(Bytes.toBytes(key));
-		    put.add(Bytes.toBytes(hColFamName), Bytes.toBytes(hColName),b);
-			
-		    
-		    table.put(put);
+			write(key,b);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+
+	public void write(String key, byte[] value) {
+		try {
+			HTable table = new HTable(conf, hTableName);
+			Put put = new Put(Bytes.toBytes(key));
+		    put.add(Bytes.toBytes(hColFamName), Bytes.toBytes(hColName),value);
+		    table.put(put);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public byte[] read(String key) {
 		try {
 			HTable table = new HTable(conf, hTableName);
@@ -109,5 +115,6 @@ public class YQHBaseOperator implements HBaseOperator {
 		}
 		return is;
 	}
+
 
 }
