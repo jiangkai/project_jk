@@ -1,6 +1,7 @@
 package com.yuqiao.yqhbase.impl;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.KeyValue;
@@ -178,5 +179,12 @@ public class HBaseHelper {
 						+ Bytes.toString(kv.getValue()));
 			}
 		}
+	}
+	
+	
+	public static void main(String[] args)
+	{
+		Configuration conf = HBaseConfiguration.create();
+		System.out.println(conf.get("hbase.zookeeper.quorum"));
 	}
 }

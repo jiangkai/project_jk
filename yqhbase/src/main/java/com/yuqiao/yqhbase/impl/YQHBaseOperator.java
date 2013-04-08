@@ -23,7 +23,8 @@ public class YQHBaseOperator implements HBaseOperator {
 	private Configuration conf;
 
 	public YQHBaseOperator(HBaseHelper helper, Configuration conf) {
-		InputStream is = getInputStream("qyhbase.properties");
+		InputStream is = ClassLoader.getSystemResourceAsStream("qyhbase.properties");
+
 		Properties prop = new Properties();
 		try {
 			prop.load(is);
@@ -99,22 +100,4 @@ public class YQHBaseOperator implements HBaseOperator {
 	public void setHelper(HBaseHelper helper) {
 		this.helper = helper;
 	}
-
-	// public static void main(String[] args)
-	// {
-	// YQHBaseOperator test = new YQHBaseOperator();
-	// System.out.println(test.gethTableName());
-	// }
-
-	private InputStream getInputStream(String resourceName) {
-		InputStream is = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream(resourceName);
-		if (is == null) {
-			YQHBaseOperator.class.getClassLoader().getResourceAsStream(
-					resourceName);
-		}
-		return is;
-	}
-
-
 }
