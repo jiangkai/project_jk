@@ -1,6 +1,3 @@
-/dataPreprocess
-/dataStructure
-/mapReduceTask
-/pesfJob
-/sequence
-/utils
+/categoryNames
+/testDatasets
+/trainDatasets
