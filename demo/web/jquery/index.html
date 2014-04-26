@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $(".hidebtn").click(function(){
+    $("p").hide();
+  });
+  $(".showbtn").click(function(){
+    $("p").show();
+  });
+});
+</script>
+</head>
+
+<body>
+<h2>This is a heading</h2>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<button class="hidebtn">hide me</button>
+<button class="showbtn">show me</button>
+</body>
+</html>
